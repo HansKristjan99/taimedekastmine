@@ -29,12 +29,13 @@ def kalender(intervall):
         kalender2 = kalender2[:20] + kalender2[20:].replace(str(j), colored(j, "red"), 1)
     return (kalender1+kalender2)
 
-database = f"{path}\pythonsqlite.db"
+database = f"{path}\\pythonsqlite.db"
 conn = potilillede_kastmise_andmebaas.create_connection(database)
 
 nimi = input("Sisesta taime nimi ladina keeles või sisesta 'kuva' kogu andmebaasi nägemiseks: ")
-if nimi == "kuva":
+if nimi == 'kuva':
     potilillede_kastmise_andmebaas.select_all_tables(conn)
+    välju = input("\nVäljumiseks vajutage ENTER")
 else:
     try:
         kastmis_intervall = potilillede_kastmise_andmebaas.select_intervall(conn, nimi)[0]
@@ -49,3 +50,4 @@ else:
             print("Taim sisestatud andmebaasi.")
     else:
         print(kalender(kastmis_intervall))
+        välju = input("\nVäljumiseks vajutage ENTER")

@@ -11,7 +11,7 @@ def create_connection(db_file):
     """
     conn = None
     try:
-        conn = sqlite3.connect(f"{path}\pythonsqlite.db")
+        conn = sqlite3.connect(f"{path}\\pythonsqlite.db")
         return conn
     except Error as e:
         print(e)
@@ -97,7 +97,7 @@ def delete_taim(conn, id):
     cur.execute(sql, (id,))
     conn.commit()
 
-database = f"{path}\pythonsqlite.db"
+database = f"{path}\\pythonsqlite.db"
 
 sql_create_table = """ CREATE TABLE IF NOT EXISTS taimed (
                                     id integer PRIMARY KEY,

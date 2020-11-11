@@ -37,7 +37,7 @@ def select_all_tables(conn):
     :return:
     """
     cur = conn.cursor()
-    cur.execute("SELECT * FROM taimed")
+    cur.execute("SELECT nimi, kastmise_interval FROM taimed")
 
     rows = cur.fetchall()
 

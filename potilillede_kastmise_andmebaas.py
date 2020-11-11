@@ -1,5 +1,7 @@
-import sqlite3
+import sqlite3, os
 from sqlite3 import Error
+
+path = os.getcwd()
 
 def create_connection(db_file):
     """ create a database connection to the SQLite database
@@ -95,12 +97,15 @@ def delete_taim(conn, id):
     cur.execute(sql, (id,))
     conn.commit()
 
+database = f"{path}\pythonsqlite.db"
+
 sql_create_table = """ CREATE TABLE IF NOT EXISTS taimed (
                                     id integer PRIMARY KEY,
                                     nimi text NOT NULL,
                                     kastmise_interval integer NOT NULL
                                 ); """
 
+conn = create_connection(database)
 
 # create projects table
 create_table(conn, sql_create_table)
@@ -125,3 +130,7 @@ create_table(conn, sql_create_table)
 #         with conn:
 #             taim = (sisestus, interval)
 #             create_taim(conn, taim)
+        
+# with conn:
+#     select_all_tables(conn)
+    

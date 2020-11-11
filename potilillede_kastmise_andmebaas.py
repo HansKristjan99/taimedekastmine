@@ -44,7 +44,7 @@ def select_all_tables(conn):
     for row in rows:
         print(row)
 
-def select_interval(conn, nimi):
+def select_intervall(conn, nimi):
    
     cur = conn.cursor()
     cur.execute("SELECT kastmise_interval FROM taimed WHERE nimi = ?", (nimi,))

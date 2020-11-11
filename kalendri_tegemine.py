@@ -35,16 +35,17 @@ conn = potilillede_kastmise_andmebaas.create_connection(database)
 nimi = input("Sisesta taime nimi ladina keeles või sisesta 'kuva' kogu andmebaasi nägemiseks: ")
 if nimi == "kuva":
     potilillede_kastmise_andmebaas.select_all_tables(conn)
-try:
-    kastmis_intervall = potilillede_kastmise_andmebaas.select_intervall(conn, nimi)[0]
-except TypeError:
-    print("Sellist taime meie andmebaasis ei leidu.")
-    vastus = input("Kas soovid seda taime andmebaasi lisada? (Sisesta Y või N) ").lower()
-    if vastus == "y":
-        intervall = input("Sisesta kastmise intervall: ")
-        with conn:
-            taim = (nimi, intervall)
-            potilillede_kastmise_andmebaas.create_taim(conn, taim)
-        print("Taim sisestatud andmebaasi.")
 else:
-    print(kalender(kastmis_intervall))
+    try:
+        kastmis_intervall = potilillede_kastmise_andmebaas.select_intervall(conn, nimi)[0]
+    except TypeError:
+        print("Sellist taime meie andmebaasis ei leidu.")
+        vastus = input("Kas soovid seda taime andmebaasi lisada? (Sisesta Y või N) ").lower()
+        if vastus == "y":
+            intervall = input("Sisesta kastmise intervall: ")
+            with conn:
+                taim = (nimi, intervall)
+                potilillede_kastmise_andmebaas.create_taim(conn, taim)
+            print("Taim sisestatud andmebaasi.")
+    else:
+        print(kalender(kastmis_intervall))

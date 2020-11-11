@@ -43,6 +43,16 @@ def select_all_tables(conn):
 
     for row in rows:
         print(row)
+
+def select_interval(conn, nimi):
+   
+    cur = conn.cursor()
+    cur.execute("SELECT kastmise_interval FROM taimed WHERE nimi = ?", (nimi,))
+
+    rows = cur.fetchall()
+
+    for row in rows:
+        return row
         
 def create_taim(conn, taim):
     """
@@ -100,27 +110,27 @@ conn = create_connection(database)
 # create projects table
 create_table(conn, sql_create_table)
 
-while True:
-    sisestus = input("Sisesta taime nimi andmebaasi (alternatiivid: 'välju', 'muuda', 'kustuta'): ")
-    if sisestus == "välju":
-        break
-    if sisestus == "muuda":
-        id_muutmine = input("Sisestage taime ID mida tahad muuta: ")
-        uus_nimi = input("Sisesta uus taime nimi: ")
-        uus_kastmine = input("Sisesta uus kastmise interval: ")
-        update_taim(conn, (str(uus_nimi), uus_kastmine, id_muutmine))
-    if sisestus == "kustuta":
-        id_kustutamine = input("Sisestage taime ID mida tahad kustutada: ")
-        delete_taim(conn, id_kustutamine);
-    else:
-        interval = input("Sisesta kastmise interval: ")
-        if interval == "välju":
-            break
+# while True:
+#     sisestus = input("Sisesta taime nimi andmebaasi (alternatiivid: 'välju', 'muuda', 'kustuta'): ")
+#     if sisestus == "välju":
+#         break
+#     if sisestus == "muuda":
+#         id_muutmine = input("Sisestage taime ID mida tahad muuta: ")
+#         uus_nimi = input("Sisesta uus taime nimi: ")
+#         uus_kastmine = input("Sisesta uus kastmise interval: ")
+#         update_taim(conn, (str(uus_nimi), uus_kastmine, id_muutmine))
+#     if sisestus == "kustuta":
+#         id_kustutamine = input("Sisestage taime ID mida tahad kustutada: ")
+#         delete_taim(conn, id_kustutamine);
+#     else:
+#         interval = input("Sisesta kastmise interval: ")
+#         if interval == "välju":
+#             break
 
-        with conn:
-            taim = (sisestus, interval)
-            create_taim(conn, taim)
+#         with conn:
+#             taim = (sisestus, interval)
+#             create_taim(conn, taim)
         
-with conn:
-    select_all_tables(conn)
+# with conn:
+#     select_all_tables(conn)
     

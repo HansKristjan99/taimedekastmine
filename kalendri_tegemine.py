@@ -1,6 +1,9 @@
-import calendar
+import calendar, os, potilillede_kastmise_andmebaas
 import datetime as dt
 from termcolor import colored
+
+path = os.getcwd()
+
 def kalender(intervall):
     paev, kuu, aasta = dt.datetime.now().day, dt.datetime.now().month, dt.datetime.now().year
     kalender1=(calendar.month(aasta, kuu))
@@ -26,4 +29,9 @@ def kalender(intervall):
         kalender2 = kalender2[:20] + kalender2[20:].replace(str(j), colored(j, "red"), 1)
     return (kalender1+kalender2)
 
-print(kalender(4))
+database = f"{path}\pythonsqlite.db"
+conn = potilillede_kastmise_andmebaas.create_connection(database)
+
+nimi = input("Sisesta taime nimi ladina keeles: ")
+kastmis_intervall = potilillede_kastmise_andmebaas.select_interval(conn, nimi)[0]
+print(kalender(kastmis_intervall))

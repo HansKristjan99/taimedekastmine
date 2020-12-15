@@ -15,11 +15,13 @@ kalender1 = kal1.formatmonth(time_now.year, time_now.month)
 kal2 = calendar.TextCalendar(calendar.MONDAY)
 kalender2 = kal2.formatmonth(time_after.year, time_after.month)
 värvid = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray']
+legend = ''
 
 def kalender(intervall):
     global kalender1
     global kalender2
     global värvid
+    global legend
     paev, kuu, aasta = time_now.day, time_now.now().month, time_now.now().year
     kuu2, aasta2 = time_after.month, time_after.year
     for match in re.finditer(f'{time_now.year}', kalender1):
@@ -38,6 +40,9 @@ def kalender(intervall):
         kalender1 = re.sub(rf'\b{el}\b', str(el) + colored('*',värvid[0]), kalender1, 1)
     for el in punased2:
         kalender2 = re.sub(rf'\b{el}\b', str(el) + colored('*',värvid[0]), kalender2, 1)
+    legend += colored(nimi,värvid[0]) + '\n'
+    print('\nLegend:')
+    print(legend)
     try:
         värvid.pop(0)
     except:

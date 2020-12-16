@@ -16,7 +16,7 @@ kal1 = calendar.TextCalendar(calendar.MONDAY)
 kalender1 = kal1.formatmonth(time_now.year, time_now.month)
 kal2 = calendar.TextCalendar(calendar.MONDAY)
 kalender2 = kal2.formatmonth(time_after.year, time_after.month)
-värvid = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray']
+värvid = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white']
 legend = ''
 
 def kalender(intervall):

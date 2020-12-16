@@ -48,7 +48,7 @@ def kalender(intervall):
     try:
         värvid.pop(0)
     except:
-        värvid = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray']
+        värvid = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white']
     return (kalender1+kalender2)
 
 database = f"{path}\\pythonsqlite.db"

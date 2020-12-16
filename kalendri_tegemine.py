@@ -3,6 +3,8 @@ from calendar import monthrange
 from random import randint
 import datetime as dt
 from termcolor import colored
+import colorama
+colorama.init()
 
 path = os.getcwd()
 
